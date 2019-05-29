@@ -11,21 +11,26 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: []
+      todos: [],
+      task: ""
     };
   }
 
+  handleChange = e => {
+    this.setState({ task: e.target.value });
+  };
+
   addItem = e => {
     e.preventDefault();
-    console.log(e);
-    // const newItem = {
-    //   task: this.state.task,
-    //   id: this.state.id,
-    //   completed: this.state.completed
-    // };
-    // this.setState({
-    //   todos: [...this.state.todos, newItem]
-    // });
+    const newItem = {
+      task: this.state.task,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      todos: [...this.state.todos, newItem],
+      task: ""
+    });
   };
 
   render() {
@@ -35,7 +40,11 @@ class App extends React.Component {
 
         <TodoList todos={this.state.todos} />
 
-        <TodoForm onSubmit={this.addItem} />
+        <TodoForm
+          task={this.state.task}
+          handleChange={this.handleChange}
+          onSubmit={this.addItem}
+        />
       </div>
     );
   }
