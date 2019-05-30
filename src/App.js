@@ -57,10 +57,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
 
-        <TodoList
-          todos={this.state.todos}
-          handleCompletedChange={this.handleCompletedChange}
-        />
+        <TodoList todos={this.state.todos} toggleItem={this.state.completed} />
 
         <TodoForm
           task={this.state.task}
