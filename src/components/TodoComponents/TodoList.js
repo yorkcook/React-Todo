@@ -5,8 +5,10 @@ import React from "react";
 
 import Todo from "./Todo";
 
-const TodoList = ({ todos }) => {
-  return todos.map(({ task, id }) => <Todo key={id} task={task} />);
+const TodoList = ({ todos, toggleItem }) => {
+  return todos.map(todo => (
+    <Todo key={todo.id} item={todo} toggleItem={toggleItem} />
+  ));
 };
 
 export default TodoList;

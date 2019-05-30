@@ -36,20 +36,14 @@ class App extends React.Component {
   };
 
   toggleItem = id => {
-    this.setState(prevState => {
-      return {
-        todos: prevState.task.map(task => {
-          if (task.id === id) {
-            return {
-              ...task,
-              completed: !task.completed
-            };
-          } else {
-            return task;
-          }
-        })
-      };
+    const { todos } = this.state;
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
     });
+    this.setState({ todos: newTodos });
   };
 
   render() {
@@ -57,7 +51,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
 
-        <TodoList todos={this.state.todos} toggleItem={this.state.completed} />
+        <TodoList todos={this.state.todos} toggleItem={this.toggleItem} />
 
         <TodoForm
           task={this.state.task}

@@ -1,7 +1,12 @@
 import React from "react";
 
-const Todo = ({ task }) => {
-  return <div onClick={toggleItem}>{task}</div>;
+const Todo = ({ toggleItem, item }) => {
+  const x = () => toggleItem(item.id);
+  return (
+    <div className={item.completed ? "todo-completed" : null} onClick={x}>
+      {item.task}
+    </div>
+  );
 };
 
 export default Todo;
