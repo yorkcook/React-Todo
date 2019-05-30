@@ -12,7 +12,9 @@ class App extends React.Component {
     super();
     this.state = {
       todos: [],
-      task: ""
+      task: "",
+      completed: false,
+      id: Date.now()
     };
   }
 
@@ -33,12 +35,32 @@ class App extends React.Component {
     });
   };
 
+  toggleItem = id => {
+    this.setState(prevState => {
+      return {
+        todos: prevState.task.map(task => {
+          if (task.id === id) {
+            return {
+              ...task,
+              completed: !task.completed
+            };
+          } else {
+            return task;
+          }
+        })
+      };
+    });
+  };
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
 
-        <TodoList todos={this.state.todos} />
+        <TodoList
+          todos={this.state.todos}
+          handleCompletedChange={this.handleCompletedChange}
+        />
 
         <TodoForm
           task={this.state.task}
