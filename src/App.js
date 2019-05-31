@@ -48,6 +48,8 @@ class App extends React.Component {
     this.setState({ todos: newTodos });
   };
 
+  // clearCompleted =
+
   render() {
     return (
       <div>
